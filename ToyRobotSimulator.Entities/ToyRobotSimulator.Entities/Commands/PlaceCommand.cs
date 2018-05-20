@@ -9,11 +9,19 @@ namespace ToyRobotSimulator.Entities.Commands
         private readonly Tuple<int, int> potentialPosition;
         private readonly FacesEnum potentialFace;
 
-        public PlaceCommand(SimulatorMap map, Tuple<int, int> potentialPosition, FacesEnum potentialFace)
+        public PlaceCommand(SimulatorMap map, string args)
         {
+            if (String.IsNullOrEmpty(args)) { throw new InvalidArgumentsException("Arguments for this Place command were invalid"); }
+
+            string[] argumentsSplitted = args.Split(',');
+            if (argumentsSplitted.Length != 3)
+            {
+                throw new InvalidArgumentsException("Arguments for this Place command were invalid");
+            }
+
             this.map = map;
-            this.potentialFace = potentialFace;
-            this.potentialPosition = potentialPosition;
+            this.potentialPosition = Tuple.Create(int.Parse(argumentsSplitted[0]), int.Parse(argumentsSplitted[1]));
+            this.potentialFace = (FacesEnum)Enum.Parse(typeof(FacesEnum), argumentsSplitted[2]);
         }
 
         void ICommand.Execute(ToyRobot toyRobot)

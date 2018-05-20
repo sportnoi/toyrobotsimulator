@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidArgumentsException.cs" />
     <Compile Include="InvalidMoveCommandException.cs" />
     <Compile Include="InvalidPlaceCommandException.cs" />
     <Compile Include="InvalidToyRobotFaceException.cs" />

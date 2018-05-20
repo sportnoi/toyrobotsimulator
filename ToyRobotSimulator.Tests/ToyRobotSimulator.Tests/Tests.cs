@@ -34,19 +34,23 @@ namespace ToyRobotSimulator.Tests
             Assert.IsFalse(toyRobot.HasBeenPlaced());
 
             //2
-            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(-1, 0), FacesEnum.WEST);
+            string args = "-1,0,WEST";
+            PlaceCommand placeCommand = new PlaceCommand(map, args);
             Assert.Throws<InvalidPlaceCommandException>(() => toyRobot.Execute(placeCommand));
 
             //2.1
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(2, 5), FacesEnum.WEST);
+            args = "2,5,WEST";
+            placeCommand = new PlaceCommand(map, args);
             Assert.Throws<InvalidPlaceCommandException>(() => toyRobot.Execute(placeCommand));
 
             //3
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.NORTH);
+            args = "0,0,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
 
             //3.1
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(3, 4), FacesEnum.NORTH);
+            args = "3,4,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
 
         }
@@ -68,58 +72,69 @@ namespace ToyRobotSimulator.Tests
             Assert.IsFalse(toyRobot.HasBeenPlaced());
 
             //2.0: Starting in south-west corner
-            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.WEST);
+            string args = "0,0,WEST";
+            PlaceCommand placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
-            MoveCommand moveCommand = new MoveCommand(map);
+            MoveCommand moveCommand = new MoveCommand(map, string.Empty);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.0 South-west corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.SOUTH);
+            args = "0,0,SOUTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.1 South-east corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(4, 0), FacesEnum.EAST);
+            args = "4,0,EAST";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.1 South-east corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(4, 0), FacesEnum.SOUTH);
+            args = "4,0,SOUTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.2 North-east corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(4, 4), FacesEnum.EAST);
+            args = "4,4,EAST";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.2 North-east corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(4, 4), FacesEnum.NORTH);
+            args = "4,4,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.3 North-west corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 4), FacesEnum.WEST);
+            args = "0,4,WEST";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //2.3 North-west corner
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 4), FacesEnum.NORTH);
+            args = "0,4,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
 
             //3
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.NORTH);
+            args = "0,0,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             toyRobot.Execute(moveCommand);
 
             //3.1
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(2, 2), FacesEnum.EAST);
+            args = "2,2,EAST";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             toyRobot.Execute(moveCommand);
 
             //4
-            placeCommand = new PlaceCommand(map, new Tuple<int, int>(3,0), FacesEnum.NORTH);
+            args = "3,0,NORTH";
+            placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
             toyRobot.Execute(moveCommand);
             toyRobot.Execute(moveCommand);
@@ -143,11 +158,12 @@ namespace ToyRobotSimulator.Tests
             Assert.IsFalse(toyRobot.HasBeenPlaced());
 
             //2
-            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.WEST);
+            string args = "0,0,WEST";
+            PlaceCommand placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
 
             //3
-            LeftCommand leftCommand = new LeftCommand(map);
+            LeftCommand leftCommand = new LeftCommand(map, string.Empty);
             toyRobot.Execute(leftCommand);
             Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.SOUTH);
             toyRobot.Execute(leftCommand);
@@ -174,11 +190,12 @@ namespace ToyRobotSimulator.Tests
             Assert.IsFalse(toyRobot.HasBeenPlaced());
 
             //2
-            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.WEST);
+            string args = "0,0,WEST";
+            PlaceCommand placeCommand = new PlaceCommand(map, args);
             toyRobot.Execute(placeCommand);
 
             //3
-            RightCommand rightCommand = new RightCommand(map);
+            RightCommand rightCommand = new RightCommand(map, string.Empty);
             toyRobot.Execute(rightCommand);
             Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.NORTH);
             toyRobot.Execute(rightCommand);

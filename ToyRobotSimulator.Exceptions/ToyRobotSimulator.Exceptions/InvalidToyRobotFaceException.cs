@@ -4,8 +4,7 @@ namespace ToyRobotSimulator.Exceptions
 {
     public class InvalidToyRobotFaceException : Exception
     {
-        public InvalidToyRobotFaceException(string message) :
-            base(message)
-        { }
+        public InvalidToyRobotFaceException(string message) 
+            : base(message) { }
     }
 }

@@ -6,7 +6,7 @@ namespace ToyRobotSimulator.Entities.Commands
     {
         private readonly SimulatorMap map;
 
-        public RightCommand(SimulatorMap map)
+        public RightCommand(SimulatorMap map, String args)
         {
             this.map = map;
         }

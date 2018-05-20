@@ -8,7 +8,7 @@ namespace ToyRobotSimulator.Entities.Commands
         private const int unitsToMove = 1;
         private readonly SimulatorMap map;
 
-        public MoveCommand(SimulatorMap map)
+        public MoveCommand(SimulatorMap map, string args)
         {
             this.map = map;
         }
