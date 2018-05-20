@@ -4,20 +4,6 @@ namespace ToyRobotSimulator.Entities
 {
     public class SimulatorMap
     {
-        #region Singleton
-        private static SimulatorMap instance;
-        private SimulatorMap() { }
-        public static SimulatorMap Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new SimulatorMap();
-                return instance;
-            }
-        }
-        #endregion
-
         private const int MAX_X = 4;
         private const int MAX_Y = 4;
 

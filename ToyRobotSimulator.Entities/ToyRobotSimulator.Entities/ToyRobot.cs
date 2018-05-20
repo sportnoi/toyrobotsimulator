@@ -6,34 +6,21 @@ namespace ToyRobotSimulator.Entities
 {
     public class ToyRobot
     {
-        #region Singleton
-        private static ToyRobot instance;
-        private ToyRobot() { }
-        public static ToyRobot Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new ToyRobot();
-                return instance;
-            }
-        }
-        #endregion
-
         private Tuple<int, int> CurrentPosition { get; set; }
         private FacesEnum Face { get; set; }
 
-        public string GetCurrentPosition()
+        public Tuple<int, int, FacesEnum> GetCurrentPosition()
         {
             if (!this.HasBeenPlaced())
             {
-                throw new ToyRobotHasNotBeenPlacedException();
+                throw new ToyRobotHasNotBeenPlacedException("As the robot has not been placed, you cannot use any other command than PLACE.");
             }
 
-            return this.CurrentPosition.Item1 + "," +
-                   this.CurrentPosition.Item2 + "," +
-                   this.Face;
+            return Tuple.Create(CurrentPosition.Item1,
+                   this.CurrentPosition.Item2,
+                   this.Face);
         }
+
         public bool HasBeenPlaced()
         {
             return this.CurrentPosition != null;
@@ -43,9 +30,13 @@ namespace ToyRobotSimulator.Entities
             command.Execute(this);
         }
 
-        public void Place(Tuple<int, int> newPosition, FacesEnum newFace)
+        public void UpdatePosition(Tuple<int, int> newPosition)
         {
             this.CurrentPosition = newPosition;
+        }
+
+        public void UpdateFacing(FacesEnum newFace)
+        {
             this.Face = newFace;
         }
     }

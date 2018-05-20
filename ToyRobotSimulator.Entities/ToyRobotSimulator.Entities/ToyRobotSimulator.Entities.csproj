@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\PlaceCommand.cs" />
     <Compile Include="Faces.cs" />
     <Compile Include="SimulatorMap.cs" />

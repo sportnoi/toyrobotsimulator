@@ -20,10 +20,11 @@ namespace ToyRobotSimulator.Entities.Commands
         {
             if (!map.IsPotentialPositionInOfBounds(this.potentialPosition))
             {
-                throw new InvalidPlaceCommandException("Invalid arguments. New position should be between the limits of the tablemap");
+                throw new InvalidPlaceCommandException("Invalid arguments. New position should be between the limits of the tablemap.");
             }
 
-            toyRobot.Place(this.potentialPosition, this.potentialFace);
+            toyRobot.UpdatePosition(this.potentialPosition);
+            toyRobot.UpdateFacing(this.potentialFace);
         }
     }
 }

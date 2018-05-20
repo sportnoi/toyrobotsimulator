@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidMoveCommandException.cs" />
     <Compile Include="InvalidPlaceCommandException.cs" />
+    <Compile Include="InvalidToyRobotFaceException.cs" />
     <Compile Include="ToyRobotHasNotBeenPlacedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

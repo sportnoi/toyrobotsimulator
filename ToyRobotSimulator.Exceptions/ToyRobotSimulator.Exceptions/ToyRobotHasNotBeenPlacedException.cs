@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToyRobotSimulator.Exceptions
 {
     public class ToyRobotHasNotBeenPlacedException : Exception
     {
+        public ToyRobotHasNotBeenPlacedException(string message) 
+            : base(message) { }
     }
 }
