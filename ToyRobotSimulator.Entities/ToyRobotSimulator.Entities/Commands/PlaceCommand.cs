@@ -24,7 +24,7 @@ namespace ToyRobotSimulator.Entities.Commands
             }
 
             toyRobot.UpdatePosition(this.potentialPosition);
-            toyRobot.UpdateFacing(this.potentialFace);
+            toyRobot.UpdateFace(this.potentialFace);
         }
     }
 }

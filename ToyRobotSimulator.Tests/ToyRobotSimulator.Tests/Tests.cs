@@ -127,5 +127,67 @@ namespace ToyRobotSimulator.Tests
             toyRobot.Execute(moveCommand);
             Assert.Throws<InvalidMoveCommandException>(() => toyRobot.Execute(moveCommand));
         }
+
+        [Test]
+        public void RotateRobotToLeft()
+        {
+            /*
+             * Should rotate the Robot without moving it
+             * 1. Test initial state
+             * 2. Place the robot
+             * 3. 360 degrees rotation
+             */
+
+            //1
+            Assert.Throws<ToyRobotHasNotBeenPlacedException>(() => toyRobot.GetCurrentPosition());
+            Assert.IsFalse(toyRobot.HasBeenPlaced());
+
+            //2
+            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.WEST);
+            toyRobot.Execute(placeCommand);
+
+            //3
+            LeftCommand leftCommand = new LeftCommand(map);
+            toyRobot.Execute(leftCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.SOUTH);
+            toyRobot.Execute(leftCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.EAST);
+            toyRobot.Execute(leftCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.NORTH);
+            toyRobot.Execute(leftCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.WEST);
+
+        }
+
+        [Test]
+        public void RotateRobotToRight()
+        {
+            /*
+             * Should rotate the Robot without moving it
+             * 1. Test initial state
+             * 2. Place the robot
+             * 3. 360 degrees rotation
+             */
+
+            //1
+            Assert.Throws<ToyRobotHasNotBeenPlacedException>(() => toyRobot.GetCurrentPosition());
+            Assert.IsFalse(toyRobot.HasBeenPlaced());
+
+            //2
+            PlaceCommand placeCommand = new PlaceCommand(map, new Tuple<int, int>(0, 0), FacesEnum.WEST);
+            toyRobot.Execute(placeCommand);
+
+            //3
+            RightCommand rightCommand = new RightCommand(map);
+            toyRobot.Execute(rightCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.NORTH);
+            toyRobot.Execute(rightCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.EAST);
+            toyRobot.Execute(rightCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.SOUTH);
+            toyRobot.Execute(rightCommand);
+            Assert.IsTrue(toyRobot.GetCurrentPosition().Item3 == FacesEnum.WEST);
+
+        }
     }
 }

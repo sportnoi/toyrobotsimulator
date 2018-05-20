@@ -35,7 +35,7 @@ namespace ToyRobotSimulator.Entities
             this.CurrentPosition = newPosition;
         }
 
-        public void UpdateFacing(FacesEnum newFace)
+        public void UpdateFace(FacesEnum newFace)
         {
             this.Face = newFace;
         }
