@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Exceptions
 {
     public class InvalidToyRobotFaceException : Exception
     {
-        public InvalidToyRobotFaceException(string message) 
-            : base(message) { }
+        public InvalidToyRobotFaceException() 
+            : base("The robot is not facing anywhere") { }
     }
 }

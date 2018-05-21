@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Exceptions
 {
     public class InvalidMoveCommandException : Exception
     {
-        public InvalidMoveCommandException(string message)
-            : base(message) { }
+        public InvalidMoveCommandException()
+            : base("With this move the robot may fall, so I will ignore it. Please try again.") { }
     }
 }
