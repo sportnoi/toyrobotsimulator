@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Exceptions
 {
     public class InvalidArgumentsException : Exception
     {
-        public InvalidArgumentsException(string message) 
-            : base (message) { }
+        public InvalidArgumentsException() 
+            : base ("Arguments for this Place command were invalid") { }
     }
 }

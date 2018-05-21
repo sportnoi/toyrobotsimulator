@@ -1,11 +1,10 @@
 ﻿using System;
-using ToyRobotSimulator.Exceptions;
 
 namespace ToyRobotSimulator.Entities.Commands
 {
     public class ReportCommand : ICommand
     {
-        public ReportCommand(SimulatorMap map,  string args) { }
+        public ReportCommand(string args) { }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {

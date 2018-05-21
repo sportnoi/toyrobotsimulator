@@ -6,19 +6,17 @@ namespace ToyRobotSimulator.Entities.Commands
     public class MoveCommand : ICommand
     {
         private const int unitsToMove = 1;
-        private readonly SimulatorMap map;
 
-        public MoveCommand(SimulatorMap map, string args)
+        public MoveCommand(string args)
         {
-            this.map = map;
         }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {
             Tuple<int, int> newPotentialPosition = GetPotentialPosition(toyRobot);
-            if (!map.IsPotentialPositionInOfBounds(newPotentialPosition))
+            if (!SimulatorMap.Instance.IsPotentialPositionInOfBounds(newPotentialPosition))
             {
-                throw new InvalidMoveCommandException("With this move the robot may fall, so I will ignore it. Please try again.");
+                throw new InvalidMoveCommandException();
             }
 
             toyRobot.UpdatePosition(newPotentialPosition);
@@ -38,7 +36,7 @@ namespace ToyRobotSimulator.Entities.Commands
                 case FacesEnum.EAST:
                     return Tuple.Create(currentPosition.Item1 + unitsToMove, currentPosition.Item2);
                 default:
-                    throw new InvalidToyRobotFaceException("The robot is not facing anywhere");
+                    throw new InvalidToyRobotFaceException();
             }
         }
     }

@@ -5,30 +5,28 @@ namespace ToyRobotSimulator.Entities.Commands
 {
     public class PlaceCommand : ICommand
     {
-        private readonly SimulatorMap map;
         private readonly Tuple<int, int> potentialPosition;
         private readonly FacesEnum potentialFace;
 
-        public PlaceCommand(SimulatorMap map, string args)
+        public PlaceCommand(string args)
         {
-            if (String.IsNullOrEmpty(args)) { throw new InvalidArgumentsException("Arguments for this Place command were invalid"); }
+            if (String.IsNullOrEmpty(args)) { throw new InvalidArgumentsException(); }
 
-            string[] argumentsSplitted = args.Split(',');
+            var argumentsSplitted = args.Split(',');
             if (argumentsSplitted.Length != 3)
             {
-                throw new InvalidArgumentsException("Arguments for this Place command were invalid");
+                throw new InvalidArgumentsException();
             }
 
-            this.map = map;
             this.potentialPosition = Tuple.Create(int.Parse(argumentsSplitted[0]), int.Parse(argumentsSplitted[1]));
-            this.potentialFace = (FacesEnum)Enum.Parse(typeof(FacesEnum), argumentsSplitted[2]);
+            this.potentialFace = (FacesEnum)Enum.Parse(typeof(FacesEnum), argumentsSplitted[2].ToUpper());
         }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {
-            if (!map.IsPotentialPositionInOfBounds(this.potentialPosition))
+            if (!SimulatorMap.Instance.IsPotentialPositionInOfBounds(this.potentialPosition))
             {
-                throw new InvalidPlaceCommandException("Invalid arguments. New position should be between the limits of the tablemap.");
+                throw new InvalidPlaceCommandException();
             }
 
             toyRobot.UpdatePosition(this.potentialPosition);

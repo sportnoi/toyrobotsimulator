@@ -4,11 +4,8 @@ namespace ToyRobotSimulator.Entities.Commands
 {
     public class RightCommand : ICommand
     {
-        private readonly SimulatorMap map;
-
-        public RightCommand(SimulatorMap map, String args)
+        public RightCommand(String args)
         {
-            this.map = map;
         }
 
         void ICommand.Execute(ToyRobot toyRobot)
