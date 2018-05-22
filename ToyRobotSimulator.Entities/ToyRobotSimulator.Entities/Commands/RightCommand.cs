@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Entities.Commands
 {
     public class RightCommand : ICommand
     {
-        public RightCommand(String args)
+        public RightCommand(SimulatorMap map, String args)
         {
         }
 

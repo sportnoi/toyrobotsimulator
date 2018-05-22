@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Entities.Commands
 {
     public class LeftCommand : ICommand
     {
-        public LeftCommand(string args)
+        public LeftCommand(SimulatorMap map, string args)
         {
         }
 

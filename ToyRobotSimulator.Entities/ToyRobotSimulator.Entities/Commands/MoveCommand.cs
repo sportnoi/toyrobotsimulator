@@ -6,15 +6,17 @@ namespace ToyRobotSimulator.Entities.Commands
     public class MoveCommand : ICommand
     {
         private const int unitsToMove = 1;
+        private readonly SimulatorMap map;
 
-        public MoveCommand(string args)
+        public MoveCommand(SimulatorMap map,string args)
         {
+            this.map = map;
         }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {
             Tuple<int, int> newPotentialPosition = GetPotentialPosition(toyRobot);
-            if (!SimulatorMap.Instance.IsPotentialPositionInOfBounds(newPotentialPosition))
+            if (!this.map.IsPotentialPositionInOfBounds(newPotentialPosition))
             {
                 throw new InvalidMoveCommandException();
             }

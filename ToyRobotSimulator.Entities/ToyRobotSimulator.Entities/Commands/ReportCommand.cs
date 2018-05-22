@@ -4,7 +4,7 @@ namespace ToyRobotSimulator.Entities.Commands
 {
     public class ReportCommand : ICommand
     {
-        public ReportCommand(string args) { }
+        public ReportCommand(SimulatorMap map,string args) { }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {

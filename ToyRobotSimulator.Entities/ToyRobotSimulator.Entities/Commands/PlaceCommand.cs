@@ -7,8 +7,9 @@ namespace ToyRobotSimulator.Entities.Commands
     {
         private readonly Tuple<int, int> potentialPosition;
         private readonly FacesEnum potentialFace;
+        private readonly SimulatorMap map;
 
-        public PlaceCommand(string args)
+        public PlaceCommand(SimulatorMap map,string args)
         {
             if (String.IsNullOrEmpty(args)) { throw new InvalidArgumentsException(); }
 
@@ -18,13 +19,14 @@ namespace ToyRobotSimulator.Entities.Commands
                 throw new InvalidArgumentsException();
             }
 
+            this.map = map;
             this.potentialPosition = Tuple.Create(int.Parse(argumentsSplitted[0]), int.Parse(argumentsSplitted[1]));
             this.potentialFace = (FacesEnum)Enum.Parse(typeof(FacesEnum), argumentsSplitted[2].ToUpper());
         }
 
         void ICommand.Execute(ToyRobot toyRobot)
         {
-            if (!SimulatorMap.Instance.IsPotentialPositionInOfBounds(this.potentialPosition))
+            if (!this.map.IsPotentialPositionInOfBounds(this.potentialPosition))
             {
                 throw new InvalidPlaceCommandException();
             }
